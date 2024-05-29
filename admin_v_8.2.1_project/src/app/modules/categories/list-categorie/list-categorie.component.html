@@ -1,0 +1,170 @@
+<div class="card">
+    <!-- Card Header -->
+    <span class="spinner-border spinner-border-sm align-middle ms-2" *ngIf="isLoading$ | async"></span>
+    <div class="card-header border-0 pt-6">
+        <div class="card-title">
+            <!-- Search -->
+            <div class="d-flex align-items-center position-relative my-1">
+                <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                </i>
+                <input type="text" (keyup.enter)="searchTo()" [(ngModel)]="search" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search Category">
+            </div>
+            <!-- End Search -->
+        </div>
+
+        <!-- Card Toolbar -->
+        <div class="card-toolbar">
+            <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                <!-- Filter -->
+                <!-- <button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                    <i class="ki-duotone ki-filter fs-2">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                    Filter
+                </button> -->
+
+
+                <!-- Add Category -->
+                <a routerLink="/categories/register" class="btn btn-primary">
+                    <i class="ki-duotone ki-plus fs-2"></i>
+                    Add Category
+                </a>
+            </div>
+        </div>
+        <!-- End Card Toolbar -->
+    </div>
+    <!-- End Card Header -->
+
+    <!-- Card Body -->
+    <div class="card-body py-4">
+        <!-- Table -->
+        <div id="kt_table_users_wrapper" class="dt-container dt-bootstrap5 dt-empty-footer">
+            <div class="table-responsive">
+                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable" id="kt_table_users">
+                    <thead>
+                        <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0" role="row">
+                            <!-- User -->
+                            <th class="min-w-125px dt-orderable-asc dt-orderable-desc" data-dt-column="1">
+                                <span class="dt-column-title" role="button">Name</span>
+                            </th>
+                            <!-- End User -->
+
+                            <!-- Role -->
+                            <th class="min-w-125px dt-orderable-asc dt-orderable-desc" data-dt-column="2">
+                                <span class="dt-column-title" role="button">Icon</span>
+                            </th>
+                            <!-- End Role -->
+
+                            <!-- Last Login -->
+                            <th class="min-w-125px dt-orderable-asc dt-orderable-desc" data-dt-column="3">
+                                <span class="dt-column-title" role="button">Status</span>
+                            </th>
+                            <!-- End Last Login -->
+
+                            <!-- Two-step Verification -->
+                            <th class="min-w-125px dt-orderable-asc dt-orderable-desc" data-dt-column="4">
+                                <span class="dt-column-title" role="button">Departament</span>
+                            </th>
+                            <!-- End Two-step Verification -->
+
+                            <!-- Joined Date -->
+                            <th class="min-w-125px dt-orderable-asc dt-orderable-desc" data-dt-column="5">
+                                <span class="dt-column-title" role="button">Category</span>
+                            </th>
+                            <!-- End Joined Date -->
+
+                            <!-- Actions -->
+                            <th class="text-end min-w-100px dt-orderable-none" data-dt-column="6">
+                                <span class="dt-column-title">Actions</span>
+                            </th>
+                            <!-- End Actions -->
+                        </tr>
+                    </thead>
+
+                    <tbody class="text-gray-600 fw-semibold">
+
+                        <ng-container *ngFor="let categorie of categories">
+
+                            <!-- User Data -->
+                            <tr>
+                               
+    
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="symbol symbol-50px me-5" *ngIf="categorie.imagen">
+                                            <img [src]="categorie.imagen" class="" alt="">
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-start flex-column">
+                                            <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{categorie.name}}</a>
+                                            <!-- <span class="text-muted fw-semibold text-muted d-block fs-7">HTML, JS, ReactJS</span> -->
+                                        </div>
+                                    </div>                                
+                                </td>
+    
+                                <!-- Role -->
+                                <td>
+                                    <ng-container *ngIf="categorie.icon">
+                                        <div [id]="'svg-categorie-'+categorie.id" >
+                                            {{ getDomParser(categorie)}}
+                                        </div>
+                                    </ng-container>
+                                    
+                                </td>
+                                <!-- End Role -->
+    
+                                <td>
+                                    <span class="badge badge-light-primary fs-7 fw-bold" *ngIf="categorie.status == 1">Active</span>
+                                    <span class="badge badge-light-danger fs-7 fw-bold" *ngIf="categorie.status == 2">Inactive</span>
+                                </td>
+    
+                                <td>
+                                    <span *ngIf="categorie.categorie_second">
+                                        {{categorie.categorie_second.name}}
+                                    </span>
+                                </td>
+    
+                                <td>
+                                    <span *ngIf="categorie.categorie_third">
+                                        {{categorie.categorie_third.name}}
+                                    </span>
+                                </td>
+    
+                                <!-- Actions -->
+                                <td class="text-end">
+                                    
+                                    <a [routerLink]="'/categories/list/edit/'+categorie.id" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                        <i class="ki-duotone ki-pencil fs-2"><span class="path1"></span><span class="path2"></span></i>
+                                    </a>
+    
+                                    <a href="#" onclick="return false;" (click)="deleteCategorie(categorie)" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                        <i class="ki-duotone ki-trash fs-2"><span class="path1"></span><span class="path2"></span>
+                                            
+                                        </i> 
+                                    </a>
+                                </td>
+                                <!-- End Actions -->
+                            </tr>
+                            <!-- End User Data -->
+
+                        </ng-container>
+                        
+                    </tbody>
+                </table>
+                <ngb-pagination
+                    [collectionSize]="totalPages"
+                    [(page)]="currentPage"
+                    [pageSize]="25"
+                    [rotate]="true"
+                    [boundaryLinks]="true"
+                    (pageChange)="loadPage($event)"
+                ></ngb-pagination>
+            </div>
+        </div>
+        <!-- End Table -->
+    </div>
+    <!-- End Card Body -->
+</div>

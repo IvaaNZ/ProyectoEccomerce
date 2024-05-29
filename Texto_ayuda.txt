@@ -1,0 +1,496 @@
+https://html.hixstudio.net/shofy-prv/shofy/index.html
+https://preview.keenthemes.com/metronic8/demo1/dashboards/ecommerce.html
+https://keenthemes.com/keenicons
+https://github.com/scttcper/ngx-toastr
+
+https://www.npmjs.com/package/ngx-cookie-service
+https://docs.laravel-excel.com/3.1/getting-started/installation.html
+https://github.com/barryvdh/laravel-dompdf
+
+use Barryvdh\DomPDF\Facade as PDF;
+
+https://preview.keenthemes.com/metronic8/angular/demo1/crafted/widgets/charts
+https://beautifier.io/
+___________________________________________________________________
+
+isLoading$: Observable<boolean>;
+  isLoadingSubject: BehaviorSubject<boolean>;
+  
+  constructor(
+    private http: HttpClient,
+    public authservice: AuthService,
+  ) {
+    this.isLoadingSubject = new BehaviorSubject<boolean>(false);
+    this.isLoading$ = this.isLoadingSubject.asObservable();
+  }
+
+
+[ngModelOptions]="{standalone: true}"
+
+<select
+                        class="form-control form-select-solid fw-bolder"
+                        name="categorie"
+                        placeholder="Selec. Categoria"
+                    >
+                        <option value="">Todos</option>
+                    </select>
+
+
+<button class="btn btn-primary ml-2" placement="top" [ngbTooltip]="'Filtro'" (click)="search()">
+                <i class="icon text-white flaticon-search-1"></i>
+            </button>
+            <button class="btn btn-dark ml-2" placement="top" [ngbTooltip]="'Reset'" (click)="reset()">
+                <i class="icon text-white flaticon-refresh"></i>
+            </button>
+
+
+<div class="col-lg-6 col-md-6 col-sm-12 my-2">
+            <label class="form-label">Sube tu imagen: *</label>
+            <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile"  accept=".jpeg, .bmp, .jpg, .png, .gif, .webp"  (change)="processFile($event)">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+        </div>
+
+<span class="spinner-border spinner-border-sm align-middle ms-2" *ngIf="isLoading$ | async"></span>
+
+import { CKEditorModule } from 'ckeditor4-angular';
+CKEditorModule,
+<ckeditor data="<p>Hello, world!</p>"></ckeditor>
+_____
+(change)="onChange($event)"
+public onChange(event: any) {
+    this.description = event.editor.getData();
+  }
+
+https://blog.logrocket.com/using-defer-angular-17-implement-lazy-loading/
+
+// tienda app.module.ts
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+HttpClientModule,
+BrowserAnimationsModule,
+
+// tienda *.modules.ts
+ReactiveFormsModule,
+HttpClientModule,
+RouterModule,
+
+CommonModule , RouterOutlet, FormsModule
+
+// admin *.module.ts
+HttpClientModule,
+FormsModule,
+NgbModule,
+ReactiveFormsModule,
+InlineSVGModule,
+NgbModalModule,
+
+
+NgbPaginationModule,
+//
+
+php artisan make:factory Sale/SaleFactory --model=Sale
+
+_____________________________________________________________
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+NgMultiSelectDropDownModule.forRoot()
+
+<ng-multiselect-dropdown
+    [placeholder]="'custom placeholder'"
+    [settings]="dropdownSettings"
+    [data]="dropdownList"
+    [(ngModel)]="selectedItems"
+    (onSelect)="onItemSelect($event)"
+    (onSelectAll)="onSelectAll($event)"
+  >
+  </ng-multiselect-dropdown>
+
+dropdownList:any = [];
+selectedItems:any = [];
+dropdownSettings:IDropdownSettings = {};
+
+this.dropdownList = [
+      { item_id: 1, item_text: 'Mumbai' },
+      { item_id: 2, item_text: 'Bangaluru' },
+      { item_id: 3, item_text: 'Pune' },
+      { item_id: 4, item_text: 'Navsari' },
+      { item_id: 5, item_text: 'New Delhi' }
+    ];
+    this.selectedItems = [
+      { item_id: 3, item_text: 'Pune' },
+      { item_id: 4, item_text: 'Navsari' }
+    ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      // itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
+onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+  }
+
+
+width: ??px;
+white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+_____________________________________________________________
+<div class="row g-9">
+                        <div class="col-12">
+                            <label class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6 active" data-kt-button="true">
+                                <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                    <input class="form-check-input" type="radio" name="usage" value="1" checked="checked">
+                                </span>
+                                <span class="ms-5">
+                                    <span class="fs-6 fw-bolder mb-1 d-block">Precise Usage</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="col-12">
+                            <label class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6" data-kt-button="true">
+                                <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                    <input class="form-check-input" type="radio" name="usage" value="2">
+                                </span>
+                                <span class="ms-5">
+                                    <span class="fs-6 fw-bolder mb-1 d-block">Normal Usage</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+<ngb-pagination
+                    [collectionSize]="totalPages"
+                    [(page)]="currentPage"
+                    [pageSize]="25"
+                    [rotate]="true"
+                    [boundaryLinks]="true"
+                    (pageChange)="loadPage($event)"
+                ></ngb-pagination>
+
+
+<label for="etiqueta_especial" class="mb-0">Color: </label>
+                                            <input type="color" id="color" name="color" />
+
+<div class="input-group input-group-solid">
+                  <input type="date"
+                  class="form-control form-control-lg form-control-solid"
+                  [(ngModel)]="start_date"
+                  />
+                </div>
+
+<div class="d-flex flex-column mb-8">
+                        <label class="fs-6 fw-semibold mb-2">Target Details</label>
+                        <textarea class="form-control form-control-solid" rows="3" name="target_details" placeholder="Type Target Details"></textarea>
+                    </div>
+
+<!--begin::Modal content-->
+<div class="modal-content">
+    <!--begin::Modal header-->
+    <div class="modal-header" id="kt_modal_add_user_header">
+        <!--begin::Modal title-->
+        <h2 class="fw-bolder">Delete Categorie: #{{ categorie.id }}</h2>
+        
+        <!--end::Modal title-->
+        <!--begin::Close-->
+        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close" (click)="modal.dismiss()">
+            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+            <span class="svg-icon svg-icon-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                </svg>
+            </span>
+            <!--end::Svg Icon-->
+        </div>
+        <!--end::Close-->
+    </div>
+    <!--end::Modal header-->
+    <!--begin::Modal body-->
+    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+        <!--begin::Form-->
+        <form id="kt_modal_add_user_form" class="form" action="#">
+            <p>
+                ¿ESTAS SEGURO DE ELIMINAR ESTA CATEGORIA?
+            </p>
+            <div class="text-center pt-15">
+                <button type="reset" class="btn btn-light me-3" (click)="modal.dismiss()">Cerrar</button>
+                <button type="button" (click)="delete()" class="btn btn-danger" data-kt-users-modal-action="submit">
+                    <span class="indicator-label">ELIMINAR</span>
+
+                    <span class="spinner-border spinner-border-sm align-middle ms-2" *ngIf="isLoading | async"></span>
+                </button>
+            </div>
+        </form>
+        <!--end::Form-->
+    </div>
+    <!--end::Modal body-->
+</div>
+<!--end::Modal content-->
+
+
+
+<!--begin::Modal content CREATE-->
+<div class="modal-content">
+    <!--begin::Modal header-->
+    <div class="modal-header" id="kt_modal_add_user_header">
+        <!--begin::Modal title-->
+        <h2 class="fw-bolder">Add XXXXXXXXXXX</h2>
+        
+        <!--end::Modal title-->
+        <!--begin::Close-->
+        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close" (click)="modal.dismiss()">
+            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+            <span class="svg-icon svg-icon-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                </svg>
+            </span>
+            <!--end::Svg Icon-->
+        </div>
+        <!--end::Close-->
+    </div>
+    <!--end::Modal header-->
+    <!--begin::Modal body-->
+    <div class="modal-body scroll-y mx-5 my-7">
+        <!--begin::Form-->
+        <form id="kt_modal_add_user_form" class="form" action="#">
+             <!--begin::Scroll-->
+            <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+                <!--begin::Input group-->
+                <div class="fv-row mb-7">
+                    <!--begin::Label-->
+                    <label class="required fw-bold fs-6 mb-2">Nombre del xxxxx</label>
+                    <!--end::Label-->
+                    <!--begin::Input-->
+                    <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" [(ngModel)]="name" />
+                    <!--end::Input-->
+                </div>
+            </div>
+            <!--end::Scroll-->
+            <div class="fv-row mb-7">
+                <label class="required fw-bold fs-6 mb-2">Selec. XXXXXX</label>
+                <select
+                    class="form-control form-select-solid fw-bolder"
+                    name="XXXXX"
+                    placeholder="Select"
+                    [(ngModel)]="XXXXXXXXXXXX"
+                >
+                    <option value=""></option>
+                </select>
+            </div>
+
+            <!--begin::Actions-->
+            <div class="text-center pt-15">
+                <button type="reset" class="btn btn-light me-3" (click)="modal.dismiss()">Cerrar</button>
+                <button type="button" (click)="store()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                    <span class="indicator-label">Registrar</span>
+
+                    <span class="spinner-border spinner-border-sm align-middle ms-2" *ngIf="isLoading | async"></span>
+                    <!-- <span class="indicator-progress">Please wait...
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span> -->
+                </button>
+            </div>
+            <!--end::Actions-->
+        </form>
+        <!--end::Form-->
+    </div>
+    <!--end::Modal body-->
+</div>
+<!--end::Modal content CREATE-->
+
+________________
+
+<div class="table-responsive w-100">
+                    <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_1">
+                        <thead>
+                            <tr class="text-left">
+                                <th>IMAGEN</th>
+                                <th>ACCIÓN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let imagen_ of images_files;let i=index">
+                                <td>
+                                    <img [src]="imagen_.image" class="w-50" alt="">
+                                </td>
+                                <td>
+                                    <button class="ml-5 btn btn-sm btn-danger" (click)="removeImages(i)">-</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+___________________________
+CAMPAÑA DE DESCUENTO 1
+PRODUCT A
+PRODUCT B
+01-05-2024 / 01-09-2024
+80%
+
+CAMPAÑA DE DESCUENTO 2
+
+PRODUCT C
+PRODUCT A
+
+01-07-2024 / 01-15-2024
+
+____________________________
+
+CAMPAÑA DE DESCUENTO 3
+CATEGORIA A
+CATEGORIA B
+01-05-2024 / 01-09-2024
+50%
+
+CAMPAÑA DE DESCUENTO 4
+
+CATEGORIA C
+CATEGORIA A
+
+01-07-2024 / 01-11-2024
+
+function copiarAlPortapapeles(TEXTO) {
+  var aux = document.createElement("input");
+  aux.setAttribute("value", TEXTO);
+  document.body.appendChild(aux);
+  aux.select();
+  document.execCommand("copy");
+  document.body.removeChild(aux);
+}
+
+http://localhost:4200/discount/65ab611012b4a
+http://localhost:4200/producto/laptop-gamer-2024-corei-9?discount=65ab611012b4a
+
+<!-- SCRIPT PAYPAL -->
+<script src="https://www.paypal.com/sdk/js?client-id=&vault=true"></script>
+
+components.ts
+declare var paypal:any;
+
+@ViewChild('paypal',{static: true}) paypalElement?: ElementRef;
+
+<div #paypal ></div>
+
+paypal.Buttons({
+        // optional styling for buttons
+        // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
+        style: {
+          color: "gold",
+          shape: "rect",
+          layout: "vertical"
+        },
+
+        // set up the transaction
+        createOrder: (data:any, actions:any) => {
+            // pass in any options from the v2 orders create call:
+            // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
+
+            const createOrderPayload = {
+              purchase_units: [
+                {
+                  amount: {
+                      description: "COMPRAR POR EL ECOMMERCE",
+                      value: 50
+                  }
+                }
+              ]
+            };
+
+            return actions.order.create(createOrderPayload);
+        },
+
+        // finalize the transaction
+        onApprove: async (data:any, actions:any) => {
+            
+            let Order = await actions.order.capture();
+		// Order.purchase_units[0].payments.captures[0].id
+
+            return actions.order.capture().then(captureOrderHandler);
+        },
+
+        // handle unrecoverable errors
+        onError: (err:any) => {
+            console.error('An error prevented the buyer from checking out with PayPal');
+        }
+    }).render(this.paypalElement?.nativeElement);
+
+_____________________MERCADO DE PAGO___________________________________________
+https://www.mercadopago.com.pe/developers/es/docs/checkout-pro/integrate-preferences
+https://www.mercadopago.com.pe/developers/es/docs/checkout-pro/integrate-checkout-pro/web
+https://www.mercadopago.com.pe/developers/es/live-demo/checkout-pro
+
+https://www.mercadopago.com.pe/developers/es/docs/checkout-api/additional-content/your-integrations/test/cards
+
+ MercadoPagoConfig::setAccessToken("TEST-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+$client = new PreferenceClient();
+    $client->auto_return = "approved";
+    $datos = array(
+        "items"=> [
+            [
+                "title" => "Meu produto",
+                "quantity" => 1,
+                "currency_id" => "PEN",
+                "unit_price" => 100
+            ]
+        ],
+        "back_urls" =>array(
+            "success" => "http://localhost:4200/login",
+            "failure" => "http://localhost:4200/failure",
+            "pending" => "http://localhost:4200/pending"
+        ),
+        "redirect_urls" =>array(
+            "success" => "http://localhost:4200/login",
+            "failure" => "http://localhost:4200/failure",
+            "pending" => "http://localhost:4200/pending"
+        ),
+        "auto_return" => "approved",
+        "external_reference" => uniqid(),
+    );
+$preference = $client->create($datos);
+
+__________________MERCADO_PAGO_TIENDA
+<div id="wallet_container"></div> 
+
+mp.checkout({
+        preference: {
+          id: "1XXXXXXXXXXXXXXXX",
+        },
+        render: {
+          container: "#wallet_container",
+          label: "Pagar",
+        },
+        callback: (response:any) => {
+          console.log(response);
+          if (response.status === 'approved') {
+            console.log('Pago aprobado. Detalles:', response);
+          } else {
+            console.log('Pago no aprobado o cancelado. Detalles:', response);
+          }
+        },
+});
+
+
+mp.bricks().create("wallet", "wallet_container", {
+          initialization: {
+              preferenceId: this.PREFERENCE_ID,
+          },
+        });
+
+https://www.mercadopago.com.pe/developers/es/reference/payments/_payments_id/get
+
+$months_name = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+'#7fffd4','#87ceeb','#4169e1','#3cb371','#808000','#008080','#fff8dc',
+'#bc8f8f','#a0522d','#cd853f','#b8860b','#2f4f4f','#d2b48c'

@@ -1,0 +1,189 @@
+<div class="card">
+    <!--begin::Card body-->
+    <span class="spinner-border spinner-border-sm align-middle ms-2" *ngIf="isLoading$ | async"></span>
+    <div class="card-body border-top p-9">
+        <div class="row mb-6">
+            <div class="col-lg-8">
+                <label class="form-label required fw-semibold fs-6 py-2">Title: </label>
+                <input type="text" name="title"  [(ngModel)]="title" class="form-control form-control-lg form-control-solid" placeholder="Example : The best tablet Collection 2024">
+            </div>
+            <div class="col-lg-4">
+                <label class="form-label required fw-semibold fs-6 py-2">Sku: </label>
+                <input type="text" name="sku" [(ngModel)]="sku" class="form-control form-control-lg form-control-solid" placeholder="Example : ABC123">
+            </div>
+        </div>
+        <div class="row mb-6">
+            <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                <label class="form-label required fw-semibold fs-6 py-2">Price ARS: </label>
+                <input type="number" name="price_ars" [(ngModel)]="price_ars" class="form-control form-control-lg form-control-solid" placeholder="Example : $1.000 ARS">
+            </div>
+            <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                <label class="form-label required fw-semibold fs-6 py-2">Price USD: </label>
+                <input type="number" name="price_usd" [(ngModel)]="price_usd" class="form-control form-control-lg form-control-solid" placeholder="Example : $1.12 USD">
+            </div>
+            <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                <label class="form-label required fw-semibold fs-6 py-2">Brands:</label>
+                <select class="form-control form-select-solid fw-bolder" 
+                name="marca" 
+                [(ngModel)]="marca_id"
+                placeholder="Select Brands" >
+                
+                    <option value="">Select</option>
+                    <ng-container *ngFor="let item of marcas">
+
+                        <option [value]="item.id">{{item.name}}</option>
+
+                    </ng-container>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-6">
+
+            <div class="col-4">
+                <label class="form-label required fw-semibold fs-6 py-2">Department: (First Level)</label>
+                <select class="form-control form-select-solid fw-bolder" 
+                name="department" 
+                [(ngModel)]="categorie_first_id"
+                placeholder="Select Department" 
+                (change)="changeDepartament()">
+                
+                    <option value="">Select</option>
+                    <ng-container *ngFor="let item of categories_first">
+
+                        <option [value]="item.id">{{item.name}}</option>
+
+                    </ng-container>
+                </select>
+            </div>
+            <div class="col-4">
+                <label class="form-label fw-semibold fs-6 py-2">Category: (Second Level (Optional))</label>
+                <select class="form-control form-select-solid fw-bolder" 
+                name="category" 
+                [(ngModel)]="categorie_second_id" 
+                placeholder="Select Category" 
+                (change)="changeCategorie()">
+                
+                    <option value="">Select</option>
+                    <ng-container *ngFor="let item of categories_seconds_backs">
+
+                        <option [value]="item.id">{{item.name}}</option>
+
+                    </ng-container>
+                </select>
+            </div>
+            <div class="col-4">
+                <label class="form-label fw-semibold fs-6 py-2">Subcategory: (Third  Level (Optional))</label>
+                <select class="form-control form-select-solid fw-bolder" 
+                name="category" 
+                [(ngModel)]="categorie_third_id" 
+                placeholder="Select Category">
+                    <option value="">Select</option>
+                    <ng-container *ngFor="let item of categories_thirds_backs">
+
+                        <option [value]="item.id">{{item.name}}</option>
+
+                    </ng-container>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-6">
+            <div class="col-lg-4 col-md-4 col-sm-12 my-2">
+                <label class="fw-semibold required fs-6 py-2">Word:</label>
+                <input type="text" name="word" (keyup.enter)="addItems()" [(ngModel)]="word" 
+                class="form-control form-control-lg form-control-solid" 
+                placeholder="Example: Monitor, Gamer, etc">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 my-2" *ngIf="!isShowMultiselect">
+                <label class="fw-semibold required fs-6 py-2">Tags: </label>
+                <ng-multiselect-dropdown
+                  [placeholder]="'Tags'"
+                  [settings]="dropdownSettings"
+                  [data]="dropdownList"
+                  [(ngModel)]="selectedItems"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)"
+                >
+                </ng-multiselect-dropdown>
+              </div>
+              
+        </div>
+
+        <div class="row mb-6 py-lg-10">
+            <div class="col-lg-6 col-md-6 col-sm-12 my-2">
+                <label class="form-label">Upload your image: (PNG)</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" accept=".jpeg, .bmp, .jpg, .png, .gif, .webp" (change)="processFile($event)">
+                    <label class="custom-file-label" for="customFile"> Choose file</label>
+                </div>
+                <div class="mt-3">
+                    <img class="img py-4" [src]="imagen_previsualiza" width="200" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 my-2">
+                <div class="row">
+                    <div class="col-8">
+                        <label class="form-label required">Upload your images: (PNG)</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customMultiFiles" accept=".jpeg, .bmp, .jpg, .png, .gif, .webp" (change)="processFileTwo($event)">
+                            <label class="custom-file-label" for="customMultiFiles"> Choose file</label>
+                        </div>
+                        <div class="mt-3">
+                            <img class="img py-4" [src]="imagen_previsualiza_two" width="100" alt="">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-primary btn-sm" (click)="addImagen()">+</button>
+                    </div>
+                    <div class="col-12">
+                        <div id="kt_table_users_wrapper" class="dt-container dt-bootstrap5 dt-empty-footer">
+                            <div class="table-responsive w-100">
+                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable" id="kt_advance_table_widget_1">
+                                    <thead>
+                                        <tr class="text-left">
+                                            <th>Image</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let imagen_ of images_files;let i=index">
+                                            <td>
+                                                <img [src]="imagen_.imagen" width="90" alt="">
+                                            </td>
+                                            <td>
+                                                <button class="ml-5 btn btn-sm btn-danger" (click)="removeImages(imagen_.id)">-</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-6 py-lg-20">
+            <div class="col-lg-8 col-md-4 col-sm-12 my-2">
+                <label class="fs-6 fw-semibold required mb-2">Description: </label>
+                <ckeditor [data]="description" (change)="onChange($event)"></ckeditor>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 my-2">
+                <label class="fs-6 fw-semibold required mb-2">Summary: </label>
+                <textarea class="form-control form-control-solid" rows="3" name="resumen" [(ngModel)]="resumen" placeholder="Enter your summary here"></textarea>
+                
+            </div>
+
+        </div>
+
+        
+        <div class="row mb-6">
+            <div class="col-3">
+                <button class="btn btn-primary" (click)="save()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
