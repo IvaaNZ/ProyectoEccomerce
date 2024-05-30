@@ -3,6 +3,7 @@
 namespace App\Models\Product;
 
 use Carbon\Carbon;
+use App\Models\Product\Brand;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -52,7 +53,7 @@ class Product extends Model
     }
 
     public function brand(){
-        return $this->belongsTo(Categorie::class, 'brand_id');
+        return $this->belongsTo(Brand::class, 'brand_id');
     }
 
     public function images(){
