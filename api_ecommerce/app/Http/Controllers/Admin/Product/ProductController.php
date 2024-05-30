@@ -29,7 +29,7 @@ class ProductController extends Controller
 
         
 
-        $products = Product::filterAdvanceProduct($search,$categorie_first_id,$categorie_second_id,$categorie_third_id)
+        $products = Product::filterAdvanceProduct($search,$categorie_first_id,$categorie_second_id,$categorie_third_id,$brand_id)
         ->orderBy('id')->paginate(25);
 
         return response()->json([
@@ -136,7 +136,7 @@ class ProductController extends Controller
         }
 
         $request->request->add(['slug' => Str::slug($request->title)]);
-        $request->request->add(['tags' => json_encode($request->multiselect)]);
+        $request->request->add(['tags' => $request->multiselect]);
         $product->update($request->all());
 
         return response()->json([
@@ -151,6 +151,19 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
+        $product->delete();
+
+        return response()->json([
+            'message' => 200,
+        ]);
+    }
+    
+    public function delete_imagen(string $id)
+    {
+        $product = ProductImage::findOrFail($id);
+        if ($product->imagen) {
+            Storage::delete($product->imagen);
+        }
         $product->delete();
 
         return response()->json([

@@ -20,12 +20,12 @@ export class ProductService {
     this.isLoading$ = this.isLoadingSubject.asObservable();
   }
 
-  listProducts(page:number = 1, search:string){
+  listProducts(page:number = 1, data:any){
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({'Authorization': 'Bearer' + this.authservice.token});
-    let URL = URL_SERVICIOS + '/admin/products?page='+page+'&search='+search;
+    let URL = URL_SERVICIOS + '/admin/products/index?page='+page;
 
-    return this.http.get(URL,{headers: headers}).pipe(
+    return this.http.post(URL,data,{headers: headers}).pipe(
       finalize(() => this.isLoadingSubject.next(false))
     );
   }
@@ -84,6 +84,16 @@ export class ProductService {
     let URL = URL_SERVICIOS + '/admin/products/imagens';
 
     return this.http.post(URL,data,{headers: headers}).pipe(
+      finalize(() => this.isLoadingSubject.next(false))
+    );
+  }
+
+  deleteImagenProduct(imagen_id:string){
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({'Authorization': 'Bearer' + this.authservice.token});
+    let URL = URL_SERVICIOS + '/admin/products/imagens/'+imagen_id;
+
+    return this.http.delete(URL,{headers: headers}).pipe(
       finalize(() => this.isLoadingSubject.next(false))
     );
   }

@@ -26,11 +26,9 @@ export class CreateProductComponent {
   public categorie_first_id:string = '';
   public categorie_second_id:string = '';
   public categorie_third_id:string = '';
-
   public categories_first:any = [];
   public categories_seconds:any = [];
   public categories_seconds_backs:any = [];
-
   public categories_thirds:any = [];
   public categories_thirds_backs:any = [];
 

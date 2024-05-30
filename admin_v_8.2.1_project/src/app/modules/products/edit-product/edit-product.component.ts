@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService } from '../service/product.service';
+import { DeleteImagenAddComponent } from './delete-imagen-add/delete-imagen-add.component';
 
 @Component({
   selector: 'app-edit-product',
@@ -56,6 +58,7 @@ export class EditProductComponent {
     public productService: ProductService,
     public toastr: ToastrService,
     private activedRoute: ActivatedRoute,
+    public modelService: NgbModal,
   ){
 
   }
@@ -175,7 +178,15 @@ export class EditProductComponent {
   }
 
   removeImages(id:number){
+    const modelRef = this.modelService.open(DeleteImagenAddComponent, {centered:true, size: 'md'});
+    modelRef.componentInstance.id = id;
 
+    modelRef.componentInstance.ImagenD.subscribe((resp:any) => {
+      let INDEX = this.images_files.findIndex((item:any) => item.id == id);
+      if (INDEX != -1) {
+        this.images_files.splice(INDEX, 1);
+      }
+    })
   }
 
   addImagen(){
