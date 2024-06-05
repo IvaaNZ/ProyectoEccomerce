@@ -55,13 +55,20 @@ export class CreateBrandComponent {
       this.toastr.error('Error.', 'Todos los campos son necesarios.')
       return;
     }
-    let data = {
-      name: this.name,
-      imagen: this.file_imagen,
-      state: 1,
-    };
 
-  this.brandService.createBrands(data).subscribe((resp:any) => {
+    let formData: FormData = new FormData();
+    formData.append('name', this.name);
+    formData.append('imagen', this.file_imagen);
+    formData.append('status', 1+'');
+    
+    // let data = {
+    //   name: this.name,
+    //   imagen: this.file_imagen+'',
+    //   status: 1,
+    // };
+
+
+  this.brandService.createBrands(formData).subscribe((resp:any) => {
     console.log(resp);
     if (resp.message == 403) {
       this.toastr.error('Error.', 'Ya existe este nombre de Marca.');
@@ -76,9 +83,4 @@ export class CreateBrandComponent {
   });
   }
 }
-/**
- let formData: FormData = new FormData();
-    formData.append('name', this.name);
-    formData.append('imagen', this.file_imagen);
-    formData.append('status', 1+'');
- */
+

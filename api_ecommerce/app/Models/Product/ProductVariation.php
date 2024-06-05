@@ -7,14 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Propertie extends Model
+class ProductVariation extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
+        'product_id',
         'attribute_id',
-        'name',
-        'code',
+        'propertie_id',
+        'value_add',
+        'add_price',
+        'stock',
+        'product_variation_id',
     ];
 
     public function setCreatedAtAttribute($value){
@@ -28,11 +33,16 @@ class Propertie extends Model
         $this->attributes['updated_at'] = Carbon::now();
     }
 
-    public function specifications(){
-        return $this->hasMany(ProductSpecification::class);
+    public function product(){
+        return $this->belongsTo(Product::class);
     }
 
-    public function variations(){
-        return $this->hasMany(ProductVariation::class);
+    public function attribute(){
+        return $this->belongsTo(Attribute::class);
     }
+
+    public function propertie(){
+        return $this->belongsTo(Propertie::class);
+    }
+    
 }

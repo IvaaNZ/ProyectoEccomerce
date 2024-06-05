@@ -51,6 +51,15 @@ export class BrandService {
     );
   }
 
+  updateBrandsImg(attribute_id:string, formData:any){
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({'Authorization': 'Bearer' + this.authservice.token});
+    let URL = URL_SERVICIOS + '/admin/brands/'+attribute_id;
+
+    return this.http.put(URL, formData, {headers: headers}).pipe(
+      finalize(() => this.isLoadingSubject.next(false))
+    );
+  }
   deleteBrands(attribute_id:string){
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({'Authorization': 'Bearer' + this.authservice.token});

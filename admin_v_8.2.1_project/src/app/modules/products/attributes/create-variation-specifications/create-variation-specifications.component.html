@@ -1,0 +1,322 @@
+<div class="card">
+    <!--begin::Card body-->
+    <span class="spinner-border spinner-border-sm align-middle ms-2" *ngIf="isLoading$ | async"></span>
+    <div class="card-body border-top p-9">
+        <div class="row mb-6">
+            <div class="col-lg-8">
+                <label class="form-label fw-semibold fs-6 py-2">Title: </label>
+                <input type="text" name="title" disabled
+                [(ngModel)]="title"
+                class="form-control form-control-lg form-control-solid" 
+                placeholder="Example : The best tablet Collection 2024">
+            </div>
+            <div class="col-lg-4">
+                <label class="form-label fw-semibold fs-6 py-2">Sku: </label>
+                <input type="text" name="sku" disabled
+                [(ngModel)]="sku"
+                class="form-control form-control-lg form-control-solid" 
+                placeholder="Example : ABC123">
+            </div>
+        </div>
+        
+        <div class="row mb-6 align-items-center">
+            <div class="col-6">
+                <label class="form-label fw-semibold fs-6 py-2">Specifications: </label>
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Formularios -->
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <label class="form-label required fw-semibold fs-6 py-2">Attributes:</label>
+                                <select class="form-control form-select-solid fw-bolder" 
+                                name="specification_attribute_id" 
+                                [(ngModel)]="specification_attribute_id"
+                                placeholder="Select Attribute"
+                                (change)="changeSpecifications()">
+                                
+                                    <option value="">Select Attribute</option>
+                                    <ng-container *ngFor="let item of attributes_specifications">
+                
+                                        <option [value]="item.id">{{item.name}}</option>
+                
+                                    </ng-container>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label required fw-semibold fs-6 py-2">Field: </label>
+                                <ng-container *ngIf="type_attribute_specification == 1">
+                                    <input type="text" name="value_add"
+                                           [(ngModel)]="value_add"
+                                           class="form-control form-control-lg form-control-solid" 
+                                           placeholder="Example: The best tablet">
+                                </ng-container>
+                            
+                                <ng-container *ngIf="type_attribute_specification == 2">
+                                    <input type="number" 
+                                            name="value_add"
+                                           [(ngModel)]="value_add"
+                                           class="form-control form-control-lg form-control-solid" 
+                                           placeholder="Example: 12345678">
+                                </ng-container>
+                            
+                                <ng-container *ngIf="type_attribute_specification == 3">
+                                    <select class="form-control form-select-solid fw-bolder"
+                                            name="propertie_id"
+                                            [(ngModel)]="propertie_id">
+                                        <option value="">Select Attribute</option>
+                                        <ng-container *ngFor="let item of properties">
+                                            <option [value]="item.id">{{item.name}}</option>
+                                        </ng-container>
+                                    </select>
+                                </ng-container>
+                            
+                                <ng-container *ngIf="type_attribute_specification == 4">
+                                    <ng-multiselect-dropdown
+                                            [placeholder]="'Tags'"
+                                            [settings]="dropdownSettings"
+                                            [data]="dropdownList"
+                                            [(ngModel)]="selectedItems"
+                                            (onSelect)="onItemSelect($event)"
+                                            (onSelectAll)="onSelectAll($event)">
+                                    </ng-multiselect-dropdown>
+                                </ng-container>
+                            </div>
+                            
+                            <div class="col-4">
+                                <label class="form-label fw-semibold fs-3">Add:</label>
+                                <br>
+                                <button class="btn btn-primary btn-sm" (click)="save()">
+                                    <i class="ki-duotone ki-plus fs-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-6">
+                <label class="form-label fw-semibold fs-6 py-2">Variations: </label>
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Formularios -->
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="form-label required fw-semibold fs-6 py-2">Attributes:</label>
+                                        <select class="form-control form-select-solid fw-bolder" 
+                                        name="variations_attribute_id" 
+                                        [(ngModel)]="variations_attribute_id"
+                                        placeholder="Select Attribute">
+                                        
+                                            <option value="">Select Attribute</option>
+                                            <ng-container *ngFor="let item of attributes_variations">
+                        
+                                                <option [value]="item.id">{{item.name}}</option>
+                        
+                                            </ng-container>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label required fw-semibold fs-6 py-2">Field: </label>
+            
+                                        <ng-container *ngIf="type_attribute_variation == 3">
+                                            <select class="form-control form-select-solid fw-bolder" 
+                                                name="departament" 
+                                                [(ngModel)]="propertie_id"
+                                                placeholder="Example : Selec">
+            
+                                            
+                                                
+                                            <option value="">Select Attribute</option>
+                                            <ng-container *ngFor="let item of properties">
+                        
+                                                <option [value]="item.id">{{item.name}}</option>
+                        
+                                            </ng-container>
+                                            </select>
+                                        </ng-container>
+            
+                                        <ng-container *ngIf="type_attribute_variation == 4">
+                                            <ng-multiselect-dropdown
+                                            [placeholder]="'Tags'"
+                                            [settings]="dropdownSettings"
+                                            [data]="dropdownListVariations"
+                                            [(ngModel)]="selectedItemsVariations"
+                                            (onSelect)="onItemSelect($event)"
+                                            (onSelectAll)="onSelectAll($event)">
+                                            </ng-multiselect-dropdown>
+                                        
+                                        </ng-container>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="form-label fw-semibold fs-6">Add Price:</label>
+                                        <input type="number" name="price_add"
+                                                [(ngModel)]="price_add"
+                                                class="form-control form-control-lg form-control-solid" 
+                                                placeholder="Example : 50">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label required fw-semibold fs-6">Add Stock:</label>
+                                        <input type="number" name="stock_add"
+                                                [(ngModel)]="stock_add"
+                                                class="form-control form-control-lg form-control-solid" 
+                                                placeholder="Example : 50">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label fw-semibold fs-3">Add:</label>
+                                <br>
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="ki-duotone ki-plus fs-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Tabla de especificaciones seleccionadas para el producto -->
+                        <div class="table-responsive">
+                            <!--begin::Table-->
+                            <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                <!--begin::Table head-->
+                                <thead>
+                                    <tr class="fw-bold text-muted bg-light">
+                                        <th class="ps-4 min-w-325px rounded-start">Specification Attribute</th>
+                                        <th class="min-w-125px">Valor</th>
+                                        <th class="min-w-200px text-end rounded-end"></th>
+                                    </tr>
+                                </thead>
+                                <!--end::Table head-->
+                        <!-- TABLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+                                <!--begin::Table body-->
+                                <tbody>
+                                    <ng-container *ngFor="let specification of specifications">
+                                        <tr>
+                                          <td>
+                                            <div class="d-flex align-items-center">
+                                              <!--begin::Avatar-->
+                                              <div class="symbol symbol-45px me-5">
+                                                <img alt="Pic" src="/metronic8/demo1/assets/media/avatars/300-6.jpg">
+                                              </div>
+                                              <!--end::Avatar-->
+                                              <!--begin::Name-->
+                                              <div class="d-flex justify-content-start flex-column">
+                                                <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">
+                                                  {{ specification.attribute.name }}
+                                                </a>
+                                              </div>
+                                              <!--end::Name-->
+                                            </div>
+                                          </td>
+                                          <td>
+                                            <a href="#" onclick="return false;" class="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6">
+                                              {{ getValueAttribute(specification) }}
+                                            </a>
+                                          </td>
+                                          <td class="text-end">
+                                            <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                              <i class="ki-duotone ki-pencil fs-2"><span class="path1"></span><span class="path2"></span></i>
+                                            </a>
+                                            <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                              <i class="ki-duotone ki-trash fs-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                            </a>
+                                          </td>
+                                        </tr>
+                                      </ng-container>
+                                      
+                                    
+                                    
+                                </tbody>
+                                <!--end::Table body-->
+                            </table>
+                            <!--end::Table-->
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Tabla de variaciones seleccionadas para el producto -->
+                        <div class="table-responsive">
+                            <!--begin::Table-->
+                            <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                <!--begin::Table head-->
+                                <thead>
+                                    <tr class="fw-bold text-muted bg-light">
+                                        <th class="ps-4 min-w-325px rounded-start">Product</th>
+                                        <th class="min-w-125px">Price</th>
+                                        <th class="min-w-200px text-end rounded-end"></th>
+                                    </tr>
+                                </thead>
+                                <!--end::Table head-->
+                        
+                                <!--begin::Table body-->
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <!--begin::Avatar-->
+                                                <div class="symbol symbol-45px me-5">
+                                                    <img alt="Pic" src="/metronic8/demo1/assets/media/avatars/300-6.jpg">
+                                                </div>
+                                                <!--end::Avatar-->
+                                    
+                                                <!--begin::Name-->
+                                                <div class="d-flex justify-content-start flex-column">
+                                                    <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">Emma Smith</a>
+                                                    <a href="#" class="text-muted text-hover-primary fw-semibold text-muted d-block fs-7">
+                                                        <span class="text-gray-900">Email</span>: smith@kpmg.com
+                                                    </a>
+                                                </div>
+                                                <!--end::Name-->
+                                            </div>
+                                        </td>
+                                    
+                                        <td class="text-align: center">
+                                            <a href="#" class="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6">$560,000</a>
+                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Paid</span>
+                                        </td>
+                                    
+                                        <td class="text-end">
+                                            <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                <i class="ki-duotone ki-switch fs-2"><span class="path1"></span><span class="path2"></span></i>
+                                            </a>
+                                    
+                                            <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                <i class="ki-duotone ki-pencil fs-2"><span class="path1"></span><span class="path2"></span></i>
+                                            </a>
+                                    
+                                            <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                                <i class="ki-duotone ki-trash fs-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                                <!--end::Table body-->
+                            </table>
+                            <!--end::Table-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
