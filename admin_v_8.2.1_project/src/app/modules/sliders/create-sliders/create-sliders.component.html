@@ -14,6 +14,7 @@
             <div class="col-lg-6">
                 <label class="form-label required fw-semibold fs-6 py-2">Subtitle: </label>
                 <input type="text" name="subtitle" [(ngModel)]="subtitle" class="form-control form-control-lg form-control-solid" placeholder="Example : Exclusive offer -%50 off this week">
+                
             </div>
 
             
@@ -30,12 +31,36 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <label class="form-label fw-semibold fs-6 py-2">Link: (Optional)</label>
-                <input type="text" name="link" [(ngModel)]="link" class="form-control form-control-lg form-control-solid" placeholder="Example : http://dominio.com">
+                <div class="row">
+                    <div class="col-12">
+                        <label class="form-label fw-semibold fs-6 py-2">Link: (Optional)</label>
+                        <input type="text" name="link" [(ngModel)]="link" class="form-control form-control-lg form-control-solid" placeholder="Example : http://dominio.com">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 my-2" *ngIf="type_slider == 3">
+                        <label for="etiqueta_especial" class="required fw-bold fs-6 mb-2">Original Price: </label>
+                        <input class="form-control" type="number" id="price_original" name="price_original" [(ngModel)]="price_original"/>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 my-2" *ngIf="type_slider == 3">
+                        <label for="etiqueta_especial" class="required fw-bold fs-6 mb-2">Campaing Price: </label>
+                        <input class="form-control" type="number" id="price_campaing" name="price_campaing" [(ngModel)]="price_campaing"/>
+                    </div>
+                </div>
                 <div class="col-lg-4">
-                <label for="etiqueta_especial" class="required fw-bold fs-6 mb-2">Color: </label>
+                <label class="required fw-bold fs-6 mb-2">Color: </label>
                     <input class="form-control" type="color" id="color" name="color" [(ngModel)]="color" style="height: calc(3.25rem + 2px); padding: .575rem .75rem;" />
                 </div>
+            </div>
+            <div class="col-2">
+                <label class="form-label fw-semibold fs-6 py-2">Select Type</label>
+                <select
+                    class="form-control form-select-solid fw-bolder"
+                    name="type_slider"
+                    placeholder="Select"
+                    [(ngModel)]="type_slider">
+                <option value="1">Principal Slider</option>
+                <option value="2">Secundary Slider</option>
+                <option value="3">Product Slider</option>
+                </select>
             </div>
         </div>
         
@@ -43,6 +68,7 @@
             <div class="col-3">
                 <button class="btn btn-primary" (click)="save()">Save</button>
             </div>
+            
         </div>
     </div>
 </div>

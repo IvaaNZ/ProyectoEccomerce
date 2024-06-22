@@ -94,7 +94,7 @@ class ProductVariationsController extends Controller
                                             ->where("attribute_id",$request->attribute_id)
                                             ->count();
             if($variations_attributes_exits == 0){
-                return response()->json(["message" => 403,"message_text" => "NO SE PUEDE AGREGAR UN ATRIBUTO DIFERENTE DEL QUE YA HAY EN LA LISTA"]);
+                return response()->json(["message" => 403,"message_text" => "No es posible agregar un Atributo diferente del que se ha creado en la lista."]);
             }
         }
         $is_valid_variation = null;
@@ -151,12 +151,13 @@ class ProductVariationsController extends Controller
     public function update(Request $request, string $id)
     {
         $variations_exits = ProductVariation::where("product_id",$request->product_id)->where("product_variation_id",NULL)->count();
+        
         if($variations_exits > 0){
             $variations_attributes_exits = ProductVariation::where("product_id",$request->product_id)->where("product_variation_id",NULL)
                                             ->where("attribute_id",$request->attribute_id)
                                             ->count();
             if($variations_attributes_exits == 0){
-                return response()->json(["message" => 403,"message_text" => "No se puede agregar un Atributo de la que ya hay en la lista."]);
+                return response()->json(["message" => 403,"message_text" => "No es posible agregar un Atributo diferente del que se ha creado en la lista."]);
             }
         }
         $is_valid_variation = null;

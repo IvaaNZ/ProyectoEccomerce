@@ -3,6 +3,7 @@
 namespace App\Models\Product;
 
 use Carbon\Carbon;
+use App\Models\Discount\DiscountBrand;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,6 +25,15 @@ class Brand extends Model
     }
     
     public function setUpdatedAtAttribute($value){
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
         $this->attributes['updated_at'] = Carbon::now();
+    }
+
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
+
+    public function discount_brands(){
+        return $this->hasMany(DiscountBrand::class,'brand_id');
     }
 }

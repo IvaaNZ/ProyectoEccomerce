@@ -27,9 +27,14 @@ export class SubAttributeDeleteComponent {
   }
   delete(){
     this.attributeService.deletePropertie(this.propertie.id).subscribe((resp:any) => {
-      this.PropertieD.emit(resp.propertie);
-      this.toastr.success('Correcto.', 'La Propiedad se ha eliminado correctamente.');
-      this.modal.close();
+      if (resp.message == 403) {
+        this.toastr.error('Error', resp.message_text);
+      }else{
+        this.PropertieD.emit(resp.propertie);
+        this.toastr.success('Correcto.', 'La Propiedad se ha eliminado correctamente.');
+        this.modal.close();
+
+      }
     })
   }
 }

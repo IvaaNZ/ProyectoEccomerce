@@ -92,14 +92,6 @@ class AttributeProductController extends Controller
         ]);
     }
  
-    public function destroy_propertie($id) {
-        $propertie = Propertie::findOrFail($id);
-        $propertie->delete();
-
-        return response()->json([
-            "message" => 200,
-        ]);
-    }
 
     /**
      * Display the specified resource.
@@ -145,7 +137,34 @@ class AttributeProductController extends Controller
     public function destroy(string $id)
     {
         $attribute = Attribute::findOrFail($id);
+
+        if ($attribute->specifications->count() > 0 ||
+            $attribute->variations->count() > 0) {
+            return response()->json([
+                "message" => 403,
+                'message_text' => 'El atributo ya está relacionado con algunos o un producto.']);
+        }
+
         $attribute->delete();//IMPORTANTE VALIDACION
+        return response()->json([
+            "message" => 200,
+        ]);
+        
+    }
+
+    
+    public function destroy_propertie($id) {
+        $propertie = Propertie::findOrFail($id);
+
+        if ($propertie->specifications->count() > 0 ||
+            $propertie->variations->count() > 0) {
+            return response()->json([
+                "message" => 403,
+                'message_text' => 'La propiedad ya está relacionada con algunos o un producto.']);
+        }
+
+        $propertie->delete();
+
         return response()->json([
             "message" => 200,
         ]);

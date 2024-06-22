@@ -17,8 +17,12 @@ class Slider extends Model
         'subtitle',
         'imagen',
         'link',
-        'status',
         'color',
+        'status',
+        'type_slider',
+        'price_original',
+        'price_campaing',
+
     ];
 
     public function setCreatedAtAttribute($value){
@@ -28,6 +32,7 @@ class Slider extends Model
     }
     
     public function setUpdatedAtAttribute($value){
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
         $this->attributes['updated_at'] = Carbon::now();
     }
 }

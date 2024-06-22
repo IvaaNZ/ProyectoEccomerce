@@ -19,6 +19,8 @@ export class EditProductComponent {
   public price_usd:number = 0;
   public description:any = '<p> </p>';
   public resumen:string = '';
+  public status:number = 1;
+  public stock:number = 0;
 
   public imagen_previsualiza:any = 'https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/2.svg';
   public file_imagen:any = null;
@@ -104,6 +106,8 @@ export class EditProductComponent {
       this.title = resp.product.title;
       this.sku = resp.product.sku;
       this.resumen = resp.product.resumen;
+      this.status = resp.product.status;
+      this.stock = resp.product.stock;
       this.price_ars = resp.product.price_ars;
       this.price_usd = resp.product.price_usd;
       this.description = resp.product.description;
@@ -276,6 +280,7 @@ export class EditProductComponent {
     formData.append("price_usd", this.price_usd + "");
     formData.append("price_ars", this.price_ars + "");
     formData.append("brand_id", this.marca_id);
+    formData.append('stock', this.stock+'');
     if (this.file_imagen) {
       formData.append("portada", this.file_imagen);
     }
@@ -292,6 +297,8 @@ export class EditProductComponent {
     formData.append("resumen", this.resumen);
   
     formData.append("multiselect", JSON.stringify(this.selectedItems));
+
+    formData.append('status', this.status+'');
   
     this.productService.updateProducts(this.PRODUCT_ID, formData).subscribe((resp: any) => {
       console.log(resp);

@@ -24,6 +24,7 @@ class ProductImage extends Model
     }
     
     public function setUpdatedAtAttribute($value){
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
         $this->attributes['updated_at'] = Carbon::now();
     }
 }

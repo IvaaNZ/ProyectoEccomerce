@@ -28,9 +28,13 @@ export class DeleteBrandComponent {
   }
   delete(){
     this.brandService.deleteBrands(this.brand.id).subscribe((resp:any) => {
-      this.BrandD.emit(resp.attribute);
-      this.toastr.success('Correcto.', 'La Marca se ha eliminado correctamente.');
-      this.modal.close();
+      if (resp.message == 403) {
+        this.toastr.error('Error', resp.message_text);
+      }else{
+        this.BrandD.emit(resp.attribute);
+        this.toastr.success('Correcto.', 'La Marca se ha eliminado correctamente.');
+        this.modal.close();
+      }
     })
   }
 }

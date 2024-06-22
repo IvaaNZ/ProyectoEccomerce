@@ -95,7 +95,7 @@
                 class="form-control form-control-lg form-control-solid" 
                 placeholder="Example: Monitor, Gamer, etc">
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 my-2" *ngIf="!isShowMultiselect">
+            <div class="col-lg-5 col-md-6 col-sm-12 my-2" *ngIf="!isShowMultiselect">
                 <label class="fw-semibold required fs-6 py-2">Tags: </label>
                 <ng-multiselect-dropdown
                   [placeholder]="'Tags'"
@@ -106,7 +106,17 @@
                   (onSelectAll)="onSelectAll($event)">
                 </ng-multiselect-dropdown>
               </div>
-              
+              <div class="col-3">
+                <label class="required fw-bold fs-6 mb-2">Select Status</label>
+                <select class="form-control form-select-solid fw-bolder" 
+                name="status" 
+                [(ngModel)]="status">
+
+                    <option value="1">Pending</option>
+                    <option value="2">Public</option>
+
+                </select>
+            </div>
         </div>
 
         <div class="row mb-6 py-lg-10">
@@ -164,16 +174,27 @@
             </div>
         </div>
 
-        <div class="row mb-6 py-lg-20">
-            <div class="col-lg-8 col-md-4 col-sm-12 my-2">
+        <div class="row mb-6">
+            <div class="col-lg-8 fv-row fv-plugins-icon-container">
                 <label class="fs-6 fw-semibold required mb-2">Description: </label>
                 <ckeditor [data]="description" (change)="onChange($event)"></ckeditor>
 
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 my-2">
-                <label class="fs-6 fw-semibold required mb-2">Summary: </label>
-                <textarea class="form-control form-control-solid" rows="3" name="resumen" [(ngModel)]="resumen" placeholder="Enter your summary here"></textarea>
+            <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                <div class="row">
+                    <div class="col-12">
+                        <label class="fs-6 fw-semibold required mb-2">Summary: </label>
+                        <textarea class="form-control form-control-solid" rows="3" name="resumen" [(ngModel)]="resumen" placeholder="Enter your summary here"></textarea>
+
+                    </div>
                 
+                    <div class="col-12">
+                        <label class="fs-6 fw-semibold mb-2">Stock:</label>
+                        <input type="number" name="stock" [(ngModel)]="stock"
+                        class="form-control form-control-lg form-control-solid"
+                        placeholder="Example: 20">
+                    </div>
+                </div>
             </div>
 
         </div>

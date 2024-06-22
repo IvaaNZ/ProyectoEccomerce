@@ -21,6 +21,10 @@ export class CreateSlidersComponent {
 
   public color:string = '';
 
+  public type_slider:any = 1;
+  public price_original:any = null;
+  public price_campaing:any = null;
+
 
   constructor(
     public sliderService: SlidersService,
@@ -60,28 +64,30 @@ export class CreateSlidersComponent {
       this.toastr.error('Error', 'Los campos con (*) son obligatorios.');
       return;
     }
-
     let formData = new FormData();
     formData.append('title', this.title);
     if (this.label) {
       formData.append('label', this.label);
-      
     }
     formData.append('subtitle', this.subtitle+'');
     formData.append('image', this.file_imagen);
-
     if (this.color) {
       formData.append('color', this.color);
     }
     if (this.link) {
       formData.append('link', this.link);
-      
+    }
+    formData.append('type_slider', this.type_slider);
+    if (this.price_original) {
+      formData.append('price_original', this.price_original);
+    }
+    if (this.price_campaing) {
+      formData.append('price_campaing', this.price_campaing);
     }
 
 
     this.sliderService.createSliders(formData).subscribe((resp:any) => {
       console.log(resp);
-
 
       this.title = '';
       this.label = '';

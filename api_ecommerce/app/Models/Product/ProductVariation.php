@@ -44,5 +44,13 @@ class ProductVariation extends Model
     public function propertie(){
         return $this->belongsTo(Propertie::class);
     }
+
+    public function variation_father(){
+        return $this->belongsTo(ProductVariation::class,'product_variation_id');
+    }
+
+    public function variation_children(){
+        return $this->hasMany(ProductVariation::class,'product_variation_id');
+    }
     
 }

@@ -28,9 +28,14 @@ export class DeleteAttributeComponent {
   }
   delete(){
     this.attributeService.deleteAttributes(this.attribute.id).subscribe((resp:any) => {
-      this.AttributeD.emit(resp.attribute);
-      this.toastr.success('Correcto.', 'El Atributo se ha eliminado correctamente.');
-      this.modal.close();
+      if (resp.message == 403) {
+        this.toastr.error('Error', resp.message_text);
+      }else{
+        this.AttributeD.emit(resp.attribute);
+        this.toastr.success('Correcto.', 'El Atributo se ha eliminado correctamente.');
+        this.modal.close();
+
+      }
     })
   }
 }

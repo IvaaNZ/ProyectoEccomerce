@@ -130,6 +130,11 @@ class BrandController extends Controller
     public function destroy(string $id)
     {
         $brand = Brand::findOrFail($id);
+        if ($brand->products->count() > 0) {
+            return response()->json([
+                "message" => 403,
+                'message_text' => 'La marca ya está relacionada con algunos o un producto.']);
+        }
         $brand->delete();//IMPORTANTE VALIDACION
         return response()->json([
             "message" => 200,

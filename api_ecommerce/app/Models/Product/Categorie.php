@@ -4,6 +4,7 @@ namespace App\Models\Product;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Discount\DiscountCategorie;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -29,15 +30,36 @@ class Categorie extends Model
     }
     
     public function setUpdatedAtAttribute($value){
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
         $this->attributes['updated_at'] = Carbon::now();
     }
 
-    function categorie_second(){
+    public function categorie_second(){
         return $this->belongsTo(Categorie::class, 'categorie_second_id');
     }
 
-    function categorie_third(){
+    public function categorie_third(){
         return $this->belongsTo(Categorie::class, 'categorie_third_id');
+    }
+
+    public function categorie_seconds(){
+        return $this->hasMany(Categorie::class, 'categorie_second_id');
+    }
+
+    public function product_categorie_firsts(){
+        return $this->hasMany(Product::class,'categorie_first_id');
+    }
+
+    public function product_categorie_seconds(){
+        return $this->hasMany(Product::class,'categorie_second_id');
+    }
+
+    public function product_categorie_thirds(){
+        return $this->hasMany(Product::class,'categorie_third_id');
+    }
+
+    public function discount_categories(){
+        return $this->hasMany(DiscountCategorie::class,'categorie_id');
     }
 }
 

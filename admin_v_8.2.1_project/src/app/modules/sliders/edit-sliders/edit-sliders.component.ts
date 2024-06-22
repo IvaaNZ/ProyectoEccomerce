@@ -26,6 +26,10 @@ export class EditSlidersComponent {
 
   public slider_id:string = '';
 
+  public type_slider:any = 1;
+  public price_original:any = null;
+  public price_campaing:any = null;
+
   constructor(
     public sliderService: SlidersService,
     public toastr: ToastrService,
@@ -51,6 +55,9 @@ export class EditSlidersComponent {
       this.imagen_previsualiza = resp.slider.imagen;
       this.color = resp.slider.color;
       this.status = resp.slider.status;
+      this.type_slider = resp.slider.type_slider;
+      this.price_original = resp.slider.price_original;
+      this.price_campaing = resp.slider.price_campaing;
     })
   }
   
@@ -79,32 +86,33 @@ export class EditSlidersComponent {
       this.toastr.error('Error', 'Los campos con (*) son obligatorios.');
       return;
     }
-
     let formData = new FormData();
     formData.append('title', this.title);
     if (this.label) {
       formData.append('label', this.label);
-      
     }
     formData.append('subtitle', this.subtitle+'');
-
     if (this.file_imagen) {
       formData.append('image', this.file_imagen);
     }
-
     formData.append('status', this.status+'');
     if (this.color) {
       formData.append('color', this.color);
     }
     if (this.link) {
       formData.append('link', this.link);
-      
     }
-
+    formData.append('type_slider', this.type_slider);
+    if (this.price_original) {
+      formData.append('price_original', this.price_original);
+    }
+    if (this.price_campaing) {
+      formData.append('price_campaing', this.price_campaing);
+    }
 
     this.sliderService.updateSliders(this.slider_id,formData).subscribe((resp:any) => {
       console.log(resp);
-
+      
       this.toastr.success('Correcto', 'El Slider se editó correctamente.');
 
     })

@@ -29,6 +29,9 @@ class SliderController extends Controller
                     'link' => $slider->link,
                     'status' => $slider->status,
                     'color' => $slider->color,
+                    'type_slider' => $slider->type_slider,
+                    'price_original' => $slider->price_original,
+                    'price_campaing' => $slider->price_campaing,
                     'imagen' => env('APP_URL').'storage/'.$slider->imagen,
 
                 ];
@@ -64,6 +67,9 @@ class SliderController extends Controller
                     'link' => $slider->link,
                     'status' => $slider->status,
                     'color' => $slider->color,
+                    'type_slider' => $slider->type_slider,
+                    'price_original' => $slider->price_original,
+                    'price_campaing' => $slider->price_campaing,
                     'imagen' => env('APP_URL').'storage/'.$slider->imagen,
         ]]);
     }

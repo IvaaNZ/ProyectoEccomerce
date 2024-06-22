@@ -68,6 +68,14 @@ const Routing: Routes = [
     loadChildren: () => import('../modules/brands/brands.module').then((m) => m.BrandsModule),
   },
   {
+    path: 'coupons',
+    loadChildren: () => import('../modules/coupons/coupons.module').then((m) => m.CouponsModule),
+  },
+  {
+    path: 'discount',
+    loadChildren: () => import('../modules/discount/discount.module').then((m) => m.DiscountModule),
+  },
+  {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',

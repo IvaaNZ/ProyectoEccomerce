@@ -4,12 +4,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Ecommerce\HomeController;
+use App\Http\Controllers\Admin\Coupon\CouponController;
 use App\Http\Controllers\Admin\Product\BrandController;
 use App\Http\Controllers\Admin\Product\ProductController;
+use App\Http\Controllers\Admin\Discount\DiscountController;
 use App\Http\Controllers\Admin\Product\CategorieController;
 use App\Http\Controllers\Admin\Product\AttributeProductController;
 use App\Http\Controllers\Admin\Product\ProductVariationsController;
 use App\Http\Controllers\Admin\Product\ProductSpecificationsController;
+use App\Http\Controllers\Admin\Product\ProductVariationsNestedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,8 +86,28 @@ Route::group([
     //
     Route::get('variations/config', [ProductVariationsController::class, 'config']);
     Route::resource('variations', ProductVariationsController::class);
+    Route::resource('nested_variations', ProductVariationsNestedController::class);
 
     //
 
     Route::resource('specifications', ProductSpecificationsController::class);
+
+    //
+
+    Route::get('coupons/config', [CouponController::class, 'config']);
+    Route::resource('coupons', CouponController::class);
+
+    //
+
+    Route::resource('discounts', DiscountController::class);
+
 });
+
+Route::group([
+
+    'prefix' => 'ecommerce',
+], function ($router){
+    Route::get('home',[HomeController::class,'home']);
+    Route::get('menus',[HomeController::class,'menus']);
+});
+

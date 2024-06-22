@@ -28,9 +28,14 @@ export class DeleteCategorieComponent {
   }
   delete(){
     this.categorieService.deleteCategorie(this.categorie.id).subscribe((resp:any) => {
-      this.CategorieD.emit({message: 200});
-      this.toastr.success('Correcto', 'La Categoría se eliminó correctamente.');
-      this.modal.close();
+      if (resp.message == 403) {
+        this.toastr.error('Error', resp.message_text);
+      }else{
+        this.CategorieD.emit({message: 200});
+        this.toastr.success('Correcto', 'La Categoría se eliminó correctamente.');
+        this.modal.close();
+
+      }
     })
   }
 }
